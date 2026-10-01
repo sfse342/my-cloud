@@ -1,0 +1,12 @@
+{
+  "name": "magnet-cloud",
+  "version": "1.0.0",
+  "description": "磁力影院 · 私有云盘服务（云端离线下载磁力并在线播放）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "webtorrent": "^1.9.7"
+  }
+}
