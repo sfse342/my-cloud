@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>磁力影院 · 本地播放</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2316191f'/%3E%3Cpath d='M9 7.5v9l7-4.5z' fill='%23e8a33d'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3" fill="none" stroke="#e8a33d" stroke-width="1.6"/><path d="M9 8.5v7l6-3.5z"/></svg>
+    </div>
+    <div class="brand">
+      <h1>磁力影院</h1>
+      <p>本地服务端下载 · 浏览器在线播放</p>
+    </div>
+  </header>
+
+  <div class="paste-box">
+    <label for="magnetInput">磁力链接或 Info Hash</label>
+    <div class="input-row">
+      <textarea id="magnetInput" placeholder="magnet:?xt=urn:btih:xxxxxxxxxxxx 或直接粘贴 40 位 hash"></textarea>
+      <button id="addBtn">添加任务</button>
+    </div>
+    <div class="hint">支持 <code>magnet:</code> 链接，也支持直接粘贴 40 位 BT info hash · 可添加多个任务同时下载</div>
+  </div>
+
+  <div class="status-msg" id="toast"></div>
+
+  <div class="cloud-set">
+    <details id="cloudDetails">
+      <summary>连接我的云盘（云端下载版）· 磁力交给云端下载，手机只在线播放，不占手机空间</summary>
+      <div class="cloud-body">
+        <label for="cloudUrl">云盘地址（一键部署后 Railway 给的网址，如 https://xxx.up.railway.app）</label>
+        <input id="cloudUrl" type="text" placeholder="https://你的云盘.up.railway.app">
+        <label for="cloudToken">访问密码（部署时设置的 TOKEN）</label>
+        <input id="cloudToken" type="text" placeholder="访问密码">
+        <div class="cloud-actions">
+          <button id="cloudConnect">连接云盘</button>
+          <button id="cloudLocal">返回本地模式</button>
+        </div>
+        <div class="cloud-tip" id="cloudTip"></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="tasks" id="taskList"></div>
+
+  <div class="player-box" id="playerBox">
+    <div class="video-wrap">
+      <video id="videoPlayer" controls playsinline></video>
+      <button class="video-fs" id="videoFsBtn" aria-label="全屏">全屏</button>
+    </div>
+    <div class="player-meta">
+      <div class="pm-name" id="playingName"></div>
+      <div class="pm-actions">
+        <button class="pm-close" id="closePlayer">停止播放</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide">
+    <h2>使用说明</h2>
+    <ul>
+      <li>粘贴磁力链接，点「添加任务」，服务端会用完整 BT 协议下载（支持 DHT/TCP，普通磁力也能连）</li>
+      <li>任务连接成功后，点文件列表里的视频文件，即可边下边播；点播放器上的「全屏」按钮可全屏观看（横屏效果最佳）</li>
+      <li>每个文件前有勾选框：<b>默认全部下载</b>；取消勾选=停止下载该文件，勾选某个文件=只下载它（自动停掉其他文件）</li>
+      <li>任务卡片上有「暂停下载 / 继续下载」按钮，随时暂停或恢复整个任务</li>
+      <li>可以同时添加多个磁力任务，互不影响</li>
+      <li class="warn">浏览器原生能播的格式有限（mp4 / webm 最佳），mkv、avi 等格式如果浏览器不支持，建议用支持更多格式的浏览器（如 VLC 桌面版或 Edge 的部分版本）</li>
+      <li class="warn">请确保你拥有播放内容的合法授权，本工具不提供任何资源搜索或索引</li>
+    </ul>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
